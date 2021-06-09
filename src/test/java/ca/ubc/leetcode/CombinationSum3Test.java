@@ -26,14 +26,15 @@ class CombinationSum3Test {
     }
 
     private void assertCombos(List<List<Integer>> expected, int k, int n) {
-        List<CombinationSum3> impls = Arrays.asList(new CombinationSum3Arman());
+        List<CombinationSum3> impls = Arrays.asList(
+                new CombinationSum3Arman(),
+                new CombinationSum3Joe());
 
         impls.forEach(impl -> {
             List<List<Integer>> results = impl.combinationSum3(k, n);
-            assertThat(results)
+            assertThat(results).containsExactlyInAnyOrderElementsOf(expected)
                     .as("%s: wrong answer for k = %d, n = %d",
-                            impl.getClass().getSimpleName(), k, n)
-                    .isEqualTo(expected);
+                            impl.getClass().getSimpleName(), k, n);
         });
     }
 
